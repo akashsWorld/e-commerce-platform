@@ -4,7 +4,17 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    fontFamily:{
+      oxygen: ["Oxygen", 'sans-serif']
+    },
+    keyframes:{
+      btnBorder:{
+        // TODO:Add button Animation.
+      }
+    },
+    extend: {
+      
+    },
   },
   plugins: [],
 }
