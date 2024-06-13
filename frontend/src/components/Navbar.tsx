@@ -109,9 +109,10 @@ const Navbar = ({
             />
           </div>
         )}
-        <p className="p-3 w-fit">
-          <Link to={''}><LuShoppingCart className="h-full w-10"/></Link>
-        </p>
+        <Link to={''} className="flex my-3 mx-5 min-w-24 gap-2 cursor-pointer justify-center items-center border-2 p-2 rounded-md border-blue-500 hover:bg-blue-500 hover:text-white transition-color duration-150 ease-out">
+          <LuShoppingCart className="w-6 h-full" />
+          <p className="text-xl font-oxygen font-normal">Cart</p>
+        </Link>
       </div>
     </nav>
   );

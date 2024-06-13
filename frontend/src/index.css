@@ -17,6 +17,6 @@
         @apply flex flex-row gap-2  border-2 min-h-14 w-fit items-center font-oxygen justify-center p-2 rounded-lg border-blue-500 font-[400] transition-colors duration-150
     }
     .user-info__hover{
-        @apply border-none bg-blue-500 text-white font-oxygen font-[400]
+        @apply  bg-blue-500 text-white font-oxygen font-[400]
     }
 }
