@@ -1,11 +1,43 @@
 import React, { useState } from "react";
 import siteIcon from "./../assets/site-icon.png";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import Button from "./Button";
+import { MdOutlineAccountCircle } from "react-icons/md";
+import { IoIosArrowDown,IoIosArrowUp } from "react-icons/io";
+import { BsStars } from "react-icons/bs";
+import { LuShoppingCart } from "react-icons/lu";
+import { FaBagShopping } from "react-icons/fa6";
+import { MdCardGiftcard } from "react-icons/md";
 
-const Navbar = () => {
+const Navbar = ({
+  isLogin,
+  userName,
+}: {
+  isLogin: boolean;
+  userName: string;
+}) => {
   const navigate = useNavigate();
   const [searchParam, setSerchParam] = useState("");
+  const [onHover, setOnHover] = useState(false);
+
+
+  const navItems:{pageName:string,itemIcon:React.ReactNode,routeLink:string}[] = [
+    {
+      pageName:'Orders',
+      itemIcon:<FaBagShopping/>,
+      routeLink:'/orders'
+    },
+    {
+      pageName:'Gift Cards',
+      itemIcon:<MdCardGiftcard/>,
+      routeLink:'/'
+    },
+    {
+      pageName:'Wish list',
+      itemIcon:<BsStars/>,
+      routeLink:'/'
+    }
+  ]
 
   const onSearch = () => {
     // TODO: handle the search param;
@@ -13,13 +45,13 @@ const Navbar = () => {
 
   return (
     <nav className="flex flex-row justify-between max-h-20 ">
-      <div className="h-full w-1/5 ">
+      <div className="h-full w-1/5 flex cursor-pointer justify-center items-center " onClick={() => navigate("/")}>
         <img
-          onClick={() => navigate("/")}
-          className="h-20 w-20 min-w-20 p-1 cursor-pointer"
+          className="h-20 w-20 min-w-20 p-1 "
           src={siteIcon}
           alt="icon"
         />
+        <h2 className="font-oxygen font-bold text-2xl text-gray-500">Swingkart</h2>
       </div>
       <div className="h-20 w-4/5  flex justify-end">
         {/* TODO: Fix the Style of the form */}
@@ -37,10 +69,49 @@ const Navbar = () => {
           onChange={(eve) => setSerchParam(eve.target.value)}
           placeholder="Some Text"
         />
-        <div className="">
-          <Button content="Log In" className={'bg-orange-500 hover:bg-orange-700 transition-colors ease-in duration-100 text-white font-oxygen font-medium'} onClick={() => {}} />
-          <Button content="Sign Up" className={'transit'} onClick={() => {}} />
-        </div>
+        {isLogin ? (
+          <div className="flex my-3 mx-5 w-44 flex-col overflow-visible cursor-pointer ">
+            <span
+              className={`user-info ${onHover?"user-info__hover":''}`}
+              onMouseEnter={() => setOnHover(true)}
+              onMouseLeave={() => setOnHover(false)}
+              onClick={() => setOnHover(true)}
+              onBlur={() => setOnHover(false)}
+            >
+              <p>
+                <MdOutlineAccountCircle className="h-full" />
+              </p>
+              <p>{userName}</p>
+              <p className="transition-all duration-150">
+                {onHover ? <IoIosArrowUp /> : <IoIosArrowDown />}
+              </p>
+            </span>
+            <div className={`${onHover?'block':'hidden'} hover:block h-36 w-fit p-3 `} onMouseOver={()=>setOnHover(true)} onMouseLeave={()=>setOnHover(false)}>
+              {navItems.map((items,indx)=>
+              <div className="text-lg font-oxygen font-medium flex justify-start gap-2 p-2 hover:bg-blue-300 items-center">{items.itemIcon}
+                <Link to={items.routeLink}><p>{items.pageName}</p></Link>
+              </div>)}
+            </div>
+          </div>
+        ) : (
+          <div className="">
+            <Button
+              content="Log In"
+              className={
+                "bg-orange-500 hover:bg-orange-700 transition-colors ease-in duration-100 text-white font-oxygen font-medium"
+              }
+              onClick={() => {}}
+            />
+            <Button
+              content="Sign Up"
+              className={"transit"}
+              onClick={() => {}}
+            />
+          </div>
+        )}
+        <p className="p-3 w-fit">
+          <Link to={''}><LuShoppingCart className="h-full w-10"/></Link>
+        </p>
       </div>
     </nav>
   );
