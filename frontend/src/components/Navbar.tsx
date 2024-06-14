@@ -89,9 +89,9 @@ const Navbar = ({
                 {onHover ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </p>
             </span>
-            <div className={`${onHover?'block':'hidden'} hover:block h-36 w-fit p-3 `} onMouseOver={()=>setOnHover(true)} onMouseLeave={()=>setOnHover(false)}>
+            <div className={`${onHover?'block':'hidden'} hover:block h-fit w-full z-10 border shadow-lg rounded-lg bg-white`} onMouseOver={()=>setOnHover(true)} onMouseLeave={()=>setOnHover(false)}>
               {navItems.map((items,indx)=>
-              <div key={indx} className="text-lg font-oxygen font-medium flex justify-start gap-2 p-2 hover:bg-blue-300 items-center">{items.itemIcon}
+              <div key={indx} className="text-lg font-oxygen font-medium flex justify-start gap-2 p-4 hover:bg-blue-300 items-center box-border">{items.itemIcon}
                 <Link to={items.routeLink}><p>{items.pageName}</p></Link>
               </div>)}
             </div>
