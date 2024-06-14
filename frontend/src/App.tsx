@@ -1,17 +1,35 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import { Outlet } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import RootPage from "./RootPage";
+import Home,{loader as homeLoader} from "./pages/Home";
+
+
+
+const router= createBrowserRouter([
+  {
+    path:'/',
+    element:<RootPage/>,
+    children:[
+      {
+        index:true,
+        element:<Home/>,
+        loader: homeLoader
+      }
+    ]
+  }
+])
+
+
 
 const App = () => {
 
-  const isLoigin=true;
-  const userName= 'Akash Biswas';
+  
 
   return (
-    <>
-      <Navbar isLogin={isLoigin} userName={userName}/>
-      <Outlet />
-    </>
+    <RouterProvider router={router}/>
   );
 };
 

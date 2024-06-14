@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import siteIcon from "./../assets/site-icon.png";
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { IoIosArrowDown,IoIosArrowUp } from "react-icons/io";
@@ -39,8 +39,10 @@ const Navbar = ({
     }
   ]
 
-  const onSearch = () => {
-    // TODO: handle the search param;
+  const onSearch = (eve:React.KeyboardEvent<HTMLInputElement>) => {
+    if(eve.key==="Enter"){
+      
+    }
   };
 
   return (
@@ -68,6 +70,7 @@ const Navbar = ({
           value={searchParam}
           onChange={(eve) => setSerchParam(eve.target.value)}
           placeholder="Some Text"
+          onKeyUp={onSearch}
         />
         {isLogin ? (
           <div className="flex my-3 mx-5 w-44 flex-col overflow-visible cursor-pointer ">
@@ -88,7 +91,7 @@ const Navbar = ({
             </span>
             <div className={`${onHover?'block':'hidden'} hover:block h-36 w-fit p-3 `} onMouseOver={()=>setOnHover(true)} onMouseLeave={()=>setOnHover(false)}>
               {navItems.map((items,indx)=>
-              <div className="text-lg font-oxygen font-medium flex justify-start gap-2 p-2 hover:bg-blue-300 items-center">{items.itemIcon}
+              <div key={indx} className="text-lg font-oxygen font-medium flex justify-start gap-2 p-2 hover:bg-blue-300 items-center">{items.itemIcon}
                 <Link to={items.routeLink}><p>{items.pageName}</p></Link>
               </div>)}
             </div>
