@@ -6,12 +6,13 @@
 * {
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 
 .bg-gradient-blue {
   background: rgb(49, 38, 241);
   background: linear-gradient(
-    90deg,
+    120deg,
     rgba(49, 38, 241, 1) 0%,
     rgba(0, 212, 255, 1) 100%
   );

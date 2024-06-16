@@ -19,7 +19,7 @@ const ItemsSection = ({
           <div className="flex justify-evenly items-center mt-5 border p-8 rounded-lg bg-white h-full">
             {item.itemsList.map((eachItem,index)=>(<Link to={eachItem.routeLink} key={index} className="item after:item-after hover:item-after__hover h-72">
               <img
-                className="w-36 h-56 bg-transparent z-10"
+                className="min-w-36 max-h-56 bg-transparent z-10"
                 src={eachItem.itemsImage}
                 alt="catalogue"
               />
