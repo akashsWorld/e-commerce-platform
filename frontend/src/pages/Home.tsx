@@ -4,10 +4,12 @@ import ItemsSection from "../components/ItemsSection";
 
 const Home = () => {
   return (
-    <section >
+    <div>
       <Categories />
-      <ItemsSection heading="" itemsList={[]}/>
-    </section>
+      <section className="bg-gradient-blue mt-10">
+      <ItemsSection heading="Top mobiles" itemsList={[]}/>
+      </section>
+    </div>
   );
 };
 
